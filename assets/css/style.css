@@ -1,0 +1,783 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* CSS Variables for easy theming */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #1e293b;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --light: #f8fafc;
+    --dark: #0f172a;
+    --gray: #64748b;
+    --border: #e2e8f0;
+    --shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: #f1f5f9;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-weight: 500;
+    color: var(--secondary);
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+}
+
+/* Notification Icon */
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--danger);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.notification-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 320px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    z-index: 200;
+}
+
+.notification-icon:hover .notification-dropdown {
+    display: block;
+}
+
+.notif-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+.notif-item:last-child {
+    border-bottom: none;
+}
+
+.notif-item.unread {
+    background: #eff6ff;
+}
+
+.notif-item strong {
+    color: var(--dark);
+}
+
+.notif-item small {
+    color: var(--gray);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 9999px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-form button {
+    padding: 0.75rem 2rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-form button:hover {
+    background: #ea580c;
+}
+
+/* Section Headings */
+section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--dark);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+/* Vehicle Grid */
+.vehicle-grid,
+.vehicle-list {
+    padding: 3rem 5%;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.vehicle-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.vehicle-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.vehicle-card .content {
+    padding: 1.5rem;
+}
+
+.vehicle-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.vehicle-card p {
+    color: var(--gray);
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.vehicle-card .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 1rem 0;
+}
+
+.vehicle-card .price small {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--gray);
+}
+
+.vehicle-card .btn-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #0b9f6e;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--dark);
+}
+
+.btn-outline:hover {
+    background: var(--light);
+}
+
+/* Vehicle Details Page */
+.vehicle-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    padding: 3rem 5%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin: 2rem 5%;
+}
+
+.detail-image {
+    flex: 1 1 400px;
+}
+
+.detail-image img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.detail-info {
+    flex: 1 1 400px;
+}
+
+.detail-info h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.brand-model {
+    font-size: 1.25rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+.specs {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.specs tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.specs th,
+.specs td {
+    padding: 0.75rem 0;
+    text-align: left;
+}
+
+.specs th {
+    font-weight: 600;
+    color: var(--dark);
+    width: 40%;
+}
+
+.specs td {
+    color: var(--gray);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-available {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-booked {
+    background: #fed7aa;
+    color: #92400e;
+}
+
+.status-maintenance {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-approved {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-completed {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Forms */
+.form-container,
+.booking-form,
+.admin-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.error {
+    background: #fee2e2;
+    color: var(--danger);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.success {
+    background: #d1fae5;
+    color: var(--success);
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* Dashboard */
+.dashboard {
+    display: flex;
+    min-height: 80vh;
+}
+
+.dashboard-sidebar {
+    width: 280px;
+    background: var(--secondary);
+    color: white;
+    padding: 2rem;
+}
+
+.dashboard-sidebar h3 {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.dashboard-sidebar ul {
+    list-style: none;
+}
+
+.dashboard-sidebar li {
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-sidebar a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.dashboard-sidebar a:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.dashboard-main {
+    flex: 1;
+    padding: 2rem;
+    background: #f8fafc;
+}
+
+.profile-info {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.profile-info h3 {
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.recent-rentals,
+.notifications-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.recent-rentals h3,
+.notifications-section h3 {
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+/* Tables */
+.rentals-table,
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.rentals-table th,
+.admin-table th {
+    background: var(--secondary);
+    color: white;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+}
+
+.rentals-table td,
+.admin-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.rentals-table tr:last-child td,
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.rentals-table tr:hover,
+.admin-table tr:hover {
+    background: var(--light);
+}
+
+/* Filters Section */
+.vehicles-page {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 5%;
+}
+
+.filters {
+    flex: 0 0 280px;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+}
+
+.filters h3 {
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+}
+
+.filter-group {
+    margin-bottom: 1.5rem;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.filters button {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+.filters a {
+    display: block;
+    text-align: center;
+    color: var(--primary);
+}
+
+.vehicle-list {
+    flex: 1;
+}
+
+/* Admin Panel */
+.admin-navbar {
+    background: var(--secondary);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.admin-navbar .logo a {
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.admin-main {
+    padding: 2rem 5%;
+    background: #f1f5f9;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-right: 1rem;
+}
+
+.stat-detail h3 {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 0.25rem;
+}
+
+.stat-detail p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.admin-footer {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    margin-top: 2rem;
+    border-radius: 8px;
+    color: var(--gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .vehicles-page {
+        flex-direction: column;
+    }
+    .filters {
+        width: 100%;
+    }
+    .dashboard {
+        flex-direction: column;
+    }
+    .dashboard-sidebar {
+        width: 100%;
+    }
+}
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #0b9f6e;
+}
+
+.status-select {
+    padding: 0.25rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: white;
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+}
+
+.text-muted {
+    color: var(--gray);
+}
+
+.admin-table img {
+    border-radius: 4px;
+}

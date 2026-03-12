@@ -1,0 +1,17 @@
+# Ignore configuration file with credentials
+/includes/config.php
+
+# Ignore uploaded images
+/assets/uploads/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore logs and temp files
+*.log
+/tmp/
